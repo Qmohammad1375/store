@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>فروشگاه دمو</title>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DVKBCY77NZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DVKBCY77NZ');
+  </script>
+
+  <style>
+    :root {
+      --bg: #f6f7fb; --card: #ffffff; --text: #1d2433; --muted: #6b7385;
+      --primary: #2f6fed; --primary-dark: #2459c4; --accent: #f5b301; --border: #e3e6ef;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Vazirmatn, Tahoma, "Segoe UI", sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.8;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 16px; }
+
+    header { background: var(--card); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo { font-weight: 700; font-size: 20px; color: var(--primary); }
+    .nav-links { display: flex; gap: 20px; align-items: center; }
+    .nav-links a:hover { color: var(--primary); }
+    .cart-badge {
+      background: var(--accent); color: #000; border-radius: 999px;
+      padding: 0 8px; font-size: 13px; font-weight: 700; margin-inline-start: 4px;
+    }
+
+    .hero { text-align: center; padding: 72px 0 56px; }
+    .hero h1 { font-size: 34px; margin-bottom: 12px; }
+    .hero p { color: var(--muted); margin-bottom: 28px; }
+
+    .btn {
+      display: inline-block; border: 0; cursor: pointer; font-family: inherit;
+      background: var(--primary); color: #fff; padding: 10px 24px;
+      border-radius: 10px; font-size: 16px; transition: background .15s;
+    }
+    .btn:hover { background: var(--primary-dark); }
+    .btn.secondary { background: #eef2fd; color: var(--primary); }
+    .btn.secondary:hover { background: #dfe7fb; }
+
+    section { padding: 40px 0; }
+    section h2 { margin-bottom: 20px; font-size: 24px; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+    .product { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; }
+    .product .thumb {
+      height: 130px; border-radius: 10px; margin-bottom: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 48px; background: #eef2fd;
+    }
+    .product h3 { font-size: 18px; }
+    .product .price { color: var(--muted); margin: 6px 0 14px; }
+    .product .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    .checkout { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 24px; max-width: 520px; }
+    .checkout label { display: block; margin-top: 12px; font-size: 14px; color: var(--muted); }
+    .checkout input {
+      width: 100%; padding: 10px 12px; margin-top: 4px; font-family: inherit; font-size: 15px;
+      border: 1px solid var(--border); border-radius: 8px;
+    }
+    .cart-summary { margin: 12px 0; font-weight: 600; }
+    .msg { margin-top: 14px; padding: 10px 14px; border-radius: 8px; display: none; }
+    .msg.ok { display: block; background: #e7f7ec; color: #1b6b3a; }
+    .msg.err { display: block; background: #fdeaea; color: #a12626; }
+
+    .spacer { height: 400px; }
+    footer { text-align: center; padding: 32px 0; color: var(--muted); border-top: 1px solid var(--border); background: var(--card); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="#top" class="logo">🛒 فروشگاه دمو</a>
+    <nav class="nav-links">
+      <a href="#products">محصولات</a>
+      <a href="#checkout">پرداخت</a>
+      <span>سبد<span class="cart-badge" id="cartCount">0</span></span>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="container hero">
+    <h1>فروشگاه نمونه</h1>
+    <p>محصولات را ببینید، به سبد اضافه کنید و فرم پرداخت را تکمیل کنید.</p>
+    <a href="#products" class="btn" id="heroCta">مشاهده محصولات</a>
+  </div>
+
+  <section id="products">
+    <div class="container">
+      <h2>محصولات</h2>
+      <div class="grid">
+        <div class="product">
+          <div class="thumb">🪙</div>
+          <h3>طلای دیجیتال ۱ گرم</h3>
+          <div class="price">۳٬۵۰۰٬۰۰۰ تومان</div>
+          <div class="actions">
+            <button class="btn" onclick="addToCart('gold-1g','طلای دیجیتال ۱ گرم',3500000)">افزودن به سبد</button>
+            <button class="btn secondary" onclick="viewItem('طلای دیجیتال ۱ گرم')">جزئیات</button>
+          </div>
+        </div>
+        <div class="product">
+          <div class="thumb">💰</div>
+          <h3>سکه دیجیتال</h3>
+          <div class="price">۴۲٬۰۰۰٬۰۰۰ تومان</div>
+          <div class="actions">
+            <button class="btn" onclick="addToCart('coin-1','سکه دیجیتال',42000000)">افزودن به سبد</button>
+            <button class="btn secondary" onclick="viewItem('سکه دیجیتال')">جزئیات</button>
+          </div>
+        </div>
+        <div class="product">
+          <div class="thumb">📈</div>
+          <h3>صندوق سرمایه‌گذاری</h3>
+          <div class="price">۱٬۰۰۰٬۰۰۰ تومان</div>
+          <div class="actions">
+            <button class="btn" onclick="addToCart('fund-1','صندوق سرمایه‌گذاری',1000000)">افزودن به سبد</button>
+            <button class="btn secondary" onclick="viewItem('صندوق سرمایه‌گذاری')">جزئیات</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="checkout">
+    <div class="container">
+      <h2>تکمیل خرید</h2>
+      <form class="checkout" id="checkoutForm" novalidate>
+        <div class="cart-summary" id="cartSummary">سبد خرید خالی است.</div>
+        <label for="name">نام و نام خانوادگی</label>
+        <input id="name" type="text" placeholder="مثلاً محمد رضایی">
+        <label for="phone">شماره موبایل</label>
+        <input id="phone" type="tel" placeholder="09123456789">
+        <div style="margin-top:18px">
+          <button type="submit" class="btn">پرداخت</button>
+        </div>
+        <div class="msg" id="formMsg"></div>
+      </form>
+    </div>
+  </section>
+
+  <div class="spacer"></div>
+</main>
+
+<footer>
+  <div class="container">نسخه دمو</div>
+</footer>
+
+<script>
+  const fa = n => Number(n).toLocaleString('fa-IR');
+  const cart = [];
+
+  // ارسال امن رویداد به GA (اگر اسکریپت بلاک شده باشد خطا نمی‌دهد)
+  function track(eventName, params) {
+    if (typeof gtag === 'function') gtag('event', eventName, params || {});
+  }
+  const gaItems = () => cart.map(i => ({ item_id: i.id, item_name: i.name, price: i.price, quantity: 1 }));
+  const cartTotal = () => cart.reduce((s, i) => s + i.price, 0);
+
+  function viewItem(name) {
+    track('view_item', { items: [{ item_name: name }] });
+    alert('جزئیات ' + name + ' (صفحه نمونه)');
+  }
+
+  function addToCart(id, name, price) {
+    cart.push({ id: id, name: name, price: price });
+    track('add_to_cart', {
+      currency: 'IRR', value: price,
+      items: [{ item_id: id, item_name: name, price: price, quantity: 1 }]
+    });
+    renderCart();
+  }
+
+  function renderCart() {
+    document.getElementById('cartCount').textContent = fa(cart.length);
+    const total = cart.reduce((s, i) => s + i.price, 0);
+    document.getElementById('cartSummary').textContent =
+      cart.length ? `${fa(cart.length)} آیتم · جمع: ${fa(total)} تومان` : 'سبد خرید خالی است.';
+  }
+
+  const form = document.getElementById('checkoutForm');
+  const msg = document.getElementById('formMsg');
+
+  // شروع پرداخت: اولین باری که کاربر وارد فرم می‌شود
+  let checkoutStarted = false;
+  form.addEventListener('focusin', function () {
+    if (!checkoutStarted && cart.length) {
+      checkoutStarted = true;
+      track('begin_checkout', { currency: 'IRR', value: cartTotal(), items: gaItems() });
+    }
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+
+    if (!cart.length) {
+      track('checkout_error', { reason: 'empty_cart' });
+      showMsg('err', 'ابتدا یک محصول به سبد اضافه کنید.');
+      return;
+    }
+    if (!name || !/^09\d{9}$/.test(phone)) {
+      track('checkout_error', { reason: 'invalid_form' });
+      showMsg('err', 'نام و شماره موبایل معتبر وارد کنید.');
+      return;
+    }
+
+    // خرید موفق (قبل از خالی کردن سبد ارسال می‌شود)
+    track('purchase', {
+      transaction_id: 'T' + Date.now(),
+      currency: 'IRR', value: cartTotal(), items: gaItems()
+    });
+
+    showMsg('ok', 'خرید آزمایشی با موفقیت ثبت شد ✅');
+    cart.length = 0; checkoutStarted = false; renderCart(); form.reset();
+  });
+
+  // کلیک روی دکمه اصلی و لینک‌های منو
+  document.getElementById('heroCta').addEventListener('click', () => track('cta_click', { location: 'hero' }));
+  document.querySelectorAll('.nav-links a').forEach(a =>
+    a.addEventListener('click', () => track('nav_click', { target: a.getAttribute('href') })));
+
+  function showMsg(type, text) { msg.className = 'msg ' + type; msg.textContent = text; }
+</script>
+</body>
+</html>
