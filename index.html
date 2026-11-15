@@ -83,6 +83,9 @@
     .msg.ok { display: block; background: #e7f7ec; color: #1b6b3a; }
     .msg.err { display: block; background: #fdeaea; color: #a12626; }
 
+    .share-btn { display: inline-flex; align-items: center; gap: 8px; margin-inline-start: 10px; }
+    .share-btn svg { flex-shrink: 0; }
+
     .spacer { height: 400px; }
     footer { text-align: center; padding: 32px 0; color: var(--muted); border-top: 1px solid var(--border); background: var(--card); }
   </style>
@@ -105,6 +108,13 @@
     <h1>فروشگاه نمونه</h1>
     <p>محصولات را ببینید، به سبد اضافه کنید و فرم پرداخت را تکمیل کنید.</p>
     <a href="#products" class="btn" id="heroCta">مشاهده محصولات</a>
+    <button type="button" class="btn secondary share-btn" id="shareBtn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+        <line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/>
+      </svg>
+      اشتراک‌گذاری در توییتر
+    </button>
   </div>
 
   <section id="products">
@@ -238,6 +248,17 @@
 
   // کلیک روی دکمه اصلی و لینک‌های منو
   document.getElementById('heroCta').addEventListener('click', () => track('cta_click', { location: 'hero' }));
+
+  // دکمه اشتراک‌گذاری در توییتر
+  document.getElementById('shareBtn').addEventListener('click', function () {
+    const text = 'فروشگاه دمو';
+    const url = window.location.href;
+    track('share', { method: 'twitter', content_type: 'page', item_id: url });
+    window.open(
+      'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url),
+      '_blank', 'noopener,noreferrer'
+    );
+  });
   document.querySelectorAll('.nav-links a').forEach(a =>
     a.addEventListener('click', () => track('nav_click', { target: a.getAttribute('href') })));
 
